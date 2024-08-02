@@ -16,6 +16,7 @@ class Ship:
 
         # Move indication
         self.moving_right = False
+        self.moving_left = False
 
     def blitme(self):
         """Blits the ship"""
@@ -25,3 +26,5 @@ class Ship:
         """Updates the ship position based on move indicator"""
         if self.moving_right:
             self.rect.x += 1
+        if self.moving_left:
+            self.rect.x -= 1
