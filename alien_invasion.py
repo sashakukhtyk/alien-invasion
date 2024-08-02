@@ -53,6 +53,8 @@ class AlienInvasion:
             self.ship.moving_right = False
         if event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+        if event.key == pygame.K_q:
+            sys.exit()
 
     def _update_screen(self):
         """Update the screen at every step and show new screen"""
