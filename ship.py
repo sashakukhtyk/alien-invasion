@@ -5,6 +5,7 @@ class Ship:
     """Class representing a ship"""
     def __init__(self, ai_game):
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
 
         # Download an image and get it rect
@@ -13,6 +14,9 @@ class Ship:
 
         # Creating each new ship down the screen, centered
         self.rect.midbottom = self.screen_rect.midbottom
+
+        # Save float number for ship position horizontally
+        self.x = float(self.rect.x)
 
         # Move indication
         self.moving_right = False
@@ -25,6 +29,9 @@ class Ship:
     def update(self):
         """Updates the ship position based on move indicator"""
         if self.moving_right:
-            self.rect.x += 1
+            self.x += self.settings.ship_speed
         if self.moving_left:
-            self.rect.x -= 1
+            self.x -= self.settings.ship_speed
+
+        # update the rect position, because it can't take float number
+        self.rect.x = self.x
