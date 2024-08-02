@@ -3,6 +3,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from skeleton import Skeleton
 
 
 class AlienInvasion:
@@ -17,7 +18,9 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption('Alien Invasion')
 
+        # Initialize characters
         self.ship = Ship(self)
+        self.skeleton = Skeleton(self)
 
     def run_game(self):
         """Start the main game loop."""
@@ -34,7 +37,10 @@ class AlienInvasion:
     def _update_screen(self):
         """Update the screen at every step and show new screen"""
         self.screen.fill(self.settings.bg_color)
+
+        # Update character images
         self.ship.blitme()
+        self.skeleton.blitme()
 
         # Show last created display
         pygame.display.flip()
