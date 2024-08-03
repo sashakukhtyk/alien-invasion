@@ -47,8 +47,7 @@ class AlienInvasion:
         # Update character images
         self.ship.blitme()
         self.skeleton.blitme()
-        for bullet in self.bullets.sprites():
-            bullet.draw_bullet()
+        self.bullets.update()
 
         # Show last created display
         pygame.display.flip()
@@ -87,6 +86,11 @@ class AlienInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        """Update the bullets group."""
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
 
 if __name__ == '__main__':
