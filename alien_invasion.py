@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from skeleton import Skeleton
+from bullet import Bullet
 
 
 class AlienInvasion:
@@ -23,12 +24,14 @@ class AlienInvasion:
         # Initialize characters
         self.ship = Ship(self)
         self.skeleton = Skeleton(self)
+        self.bullets = pygame.sprite.Group()
 
     def run_game(self):
         """Start the main game loop."""
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
     def _update_screen(self):
@@ -38,6 +41,8 @@ class AlienInvasion:
         # Update character images
         self.ship.blitme()
         self.skeleton.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         # Show last created display
         pygame.display.flip()
@@ -59,6 +64,10 @@ class AlienInvasion:
             self.ship.moving_right = True
         if event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        if event.key == pygame.K_q:
+            sys.exit()
+        if event.key == pygame.K_SPACE:
+            self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """Respond to keyup events."""
@@ -66,8 +75,11 @@ class AlienInvasion:
             self.ship.moving_right = False
         if event.key == pygame.K_LEFT:
             self.ship.moving_left = False
-        if event.key == pygame.K_q:
-            sys.exit()
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
 
 if __name__ == '__main__':
