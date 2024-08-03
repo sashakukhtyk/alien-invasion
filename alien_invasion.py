@@ -70,7 +70,6 @@ class AlienInvasion:
             sys.exit()
 
 
-
 if __name__ == '__main__':
     # Create the example of game and run it
     ai = AlienInvasion()
