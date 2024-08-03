@@ -31,6 +31,17 @@ class AlienInvasion:
             self.ship.update()
             self._update_screen()
 
+    def _update_screen(self):
+        """Update the screen at every step and show new screen"""
+        self.screen.fill(self.settings.bg_color)
+
+        # Update character images
+        self.ship.blitme()
+        self.skeleton.blitme()
+
+        # Show last created display
+        pygame.display.flip()
+
     def _check_events(self):
         """Listening for the mouse and keys"""
         for event in pygame.event.get():
@@ -58,16 +69,6 @@ class AlienInvasion:
         if event.key == pygame.K_q:
             sys.exit()
 
-    def _update_screen(self):
-        """Update the screen at every step and show new screen"""
-        self.screen.fill(self.settings.bg_color)
-
-        # Update character images
-        self.ship.blitme()
-        self.skeleton.blitme()
-
-        # Show last created display
-        pygame.display.flip()
 
 
 if __name__ == '__main__':
