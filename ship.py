@@ -35,3 +35,8 @@ class Ship:
 
         # update the rect position, because it can't take float number
         self.rect.x = self.x
+
+    def center_ship(self):
+        """Centers the ship"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
