@@ -98,6 +98,11 @@ class AlienInvasion:
         # Make collided rect disappears
         collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
+        if not self.aliens:
+            # Kill existing bullets and create new fleet
+            self.bullets.empty()
+            self._create_fleet()
+
     def _create_fleet(self):
         """Create alien and add it to the fleet group."""
         # Create aliens and define how many of them in a row
