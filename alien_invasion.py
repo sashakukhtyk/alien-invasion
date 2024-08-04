@@ -3,7 +3,6 @@ import pygame
 
 from settings import Settings
 from ship import Ship
-from skeleton import Skeleton
 from bullet import Bullet
 from alien import Alien
 
@@ -24,7 +23,6 @@ class AlienInvasion:
 
         # Initialize characters
         self.ship = Ship(self)
-        self.skeleton = Skeleton(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
@@ -44,7 +42,6 @@ class AlienInvasion:
 
         # Update character images
         self.ship.blitme()
-        self.skeleton.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
