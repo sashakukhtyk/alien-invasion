@@ -121,8 +121,22 @@ class AlienInvasion:
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _check_fleet_edges(self):
+        """Respond to fleet edge events."""
+        for alien in self.aliens.sprites():
+            if alien.check_edge():
+                self._change_fleet_directions()
+                break
+
+    def _change_fleet_directions(self):
+        """Change the fleet directions and its move down"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
     def _update_aliens(self):
         """Update the alien group."""
+        self._check_fleet_edges()
         self.aliens.update()
 
 
