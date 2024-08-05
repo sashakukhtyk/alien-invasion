@@ -17,4 +17,11 @@ class Scoreboard:
         self.prep_score()
 
     def prep_score(self):
-        pass
+        """Score to image"""
+        score_str = str(self.stats.score)
+        self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
+
+        # Show score top-left corner
+        self.score_rect = self.score_image.get_rect()
+        self.score_rect.right = self.screen_rect.right - 20
+        self.score_rect.top = 20
