@@ -146,6 +146,11 @@ class AlienInvasion:
         Make collided rect disappears
         """
         collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        if collision:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
+
         if not self.aliens:
             # Kill existing bullets and create new fleet
             self.bullets.empty()
