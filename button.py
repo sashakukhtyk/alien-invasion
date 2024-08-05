@@ -20,5 +20,5 @@ class Button:
         # Show the message on the button
         self._prep_msg(msg)
 
-        def _prep_msg(self, msg):
-            pass
+    def _prep_msg(self, msg):
+        pass
